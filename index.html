@@ -78,7 +78,6 @@
                 </script>
             </div>
             <script>
-                // Проверка, является ли устройство iOS
                 function isIOS() {
                     const userAgent = navigator.userAgent;
                     return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
@@ -92,8 +91,6 @@
                         const userAgent = navigator.userAgent;
                         return /Android/.test(userAgent);
                     }
-
-                    // Использование функции для проверки
                     if (isAndroid()) {
                         setTimeout(() => {
                             dialog.showModal();
