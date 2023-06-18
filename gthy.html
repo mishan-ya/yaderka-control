@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #303030;
+      color: #fff;
+      padding: 16px;
+      border-radius: 16px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="toast('привет')">Показать Toast</button>
+
+  <script>
+    function toast(text0) {
+      var toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = text0;
+
+      document.body.appendChild(toast);
+
+      setTimeout(function() {
+        toast.style.opacity = '1';
+      }, 100);
+
+      setTimeout(function() {
+        toast.style.opacity = '0';
+        setTimeout(function() {
+          document.body.removeChild(toast);
+        }, 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

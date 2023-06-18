@@ -27,14 +27,49 @@
             height: 50vh;
             overflow: auto;
         }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #303030;
+            color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 999;
+        }
     </style>
     <script>
+
+        function toast(text0) {
+            var toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = text0;
+
+            document.getElementById("toastt").appendChild(toast);
+
+            setTimeout(function () {
+                toast.style.opacity = '1';
+            }, 100);
+
+            setTimeout(function () {
+                toast.style.opacity = '0';
+                setTimeout(function () {
+                    document.getElementById("toastt").removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
 
         function showlayout(layout) {
             document.getElementById("main").style.display = "none";
             document.getElementById("startmain").style.display = "none";
             document.getElementById("boom").style.display = "none";
             document.getElementById("inventory").style.display = "none";
+            document.getElementById("main1").style.display = "none";
+            document.getElementById("about").style.display = "none";
             document.getElementById(layout).style.display = "block";
         }
     </script>
@@ -74,7 +109,7 @@
                         <button
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
                             style="margin-top: 8px; margin-right: 4px; width: calc(100% - 4px);"
-                            onclick="showlayout('main1')">
+                            onclick="showlayout('main1'); toast('404');">
                             СОЮЗНИКИ
                         </button>
                         <button
@@ -109,6 +144,14 @@
                             dialog.close();
                         });
                     </script>
+                    <div class="footer">
+                        <a href="https://t.me/m1shan_ya/158">t.me/m1shan_ya</a>
+                        <a id="ios"
+                            href="https://appetize.io/embed/ll4kbfibszkqzsin3g6xi2r2dm?device=nexus5&osVersion=8.1&scale=100&deviceColor=black">
+                            не нажимай</a>
+                        <a id="android" href="https://t.me/m1shan_ya/158">Скачать PRO Версию для Android 4.4+</a>
+                        <a href="javascript:showlayout('about');">About App</a><br /><br /><br />
+                    </div>
                 </div>
                 <div id="startmain">
                     <h3>Точка отправления не задана!<br />Отправить на вашу геопозицию?</h3>
@@ -122,7 +165,8 @@
                         </button>
                         <button
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                            style="background-color: red; width: 100%; margin-left: 8px;" onclick="showlayout('boom')">
+                            style="background-color: red; width: 100%; margin-left: 8px;"
+                            onclick="showlayout('boom'); toast('Подождите...')">
                             ЗАПУСК!
                         </button>
                     </div>
@@ -168,13 +212,21 @@
                             ДОМОЙ
                         </button></div>
                 </div>
-                <div class="footer">
-                    <a id="ios"
-                        href="https://appetize.io/embed/ll4kbfibszkqzsin3g6xi2r2dm?device=nexus5&osVersion=8.1&scale=100&deviceColor=black">✨
-                        PRO Версия для iOS ✨</a>
-                    <a id="android" href="https://t.me/m1shan_ya/158">Скачать PRO Версию для Android 4.4+</a>
-                    <a href="https://t.me/m1shan_ya/158">t.me/m1shan_ya</a>
-                    Lite Версия<br /><br /><br />
+                <div id="about">
+                    <div style="margin: 8px; margin-top: 16px; height: 100%;">
+                        <img src="favicon.png" height="64px"
+                            style="border-radius: 5px; float:left; margin: 0px 8px 8px 0;" />
+                        <h4 style="margin: 0px; margin-top: 8px;">Пульт от ядерки!</h4>
+                        <p style="margin-top: 8px;">Ver.: Beta 2.14 <a onclick="alert('нет данных')">Changelog</a></p>
+                        <h5>Автор:</h5>
+                        <p>t.me/m1shan_ya<br />
+                            tiktok.com/@Mishan_Ya.br0</p>
+                    </div>
+                    <div class="center0"><button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
+                            ДОМОЙ
+                        </button></div>
                 </div>
                 <script>
                     // Проверка, является ли устройство iOS
@@ -190,6 +242,7 @@
                         document.getElementById("ios").style.display = "none";
                     }
                 </script>
+                <div id="toastt"></div>
             </div>
         </main>
     </div>
