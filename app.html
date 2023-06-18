@@ -22,6 +22,11 @@
             bottom: 0;
             width: 100%;
         }
+
+        .scrollable-div {
+            height: 50vh;
+            overflow: auto;
+        }
     </style>
     <script>
 
@@ -68,12 +73,14 @@
                             </button></a>
                         <button
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                            style="margin-top: 8px; margin-right: 4px; width: calc(100% - 4px);">
+                            style="margin-top: 8px; margin-right: 4px; width: calc(100% - 4px);"
+                            onclick="showlayout('main1')">
                             СОЮЗНИКИ
                         </button>
                         <button
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                            style="margin-top: 8px; margin-right: 4px; height: auto; width: 100px;">
+                            style="margin-top: 8px; margin-right: 4px; height: auto; width: 100px;"
+                            onclick="showlayout('inventory')">
                             ЗАПАСЫ ОРУЖ.
                         </button>
                     </div>
@@ -121,7 +128,7 @@
                     </div>
                 </div>
                 <div id="boom">
-                    <img src="boom.png" width="100%" /><br />
+                    <img src="explode.jpg" width="100%" /><br />
                     <h2 style="text-align: center;">Оладушки! 🤗</h2><br /><br /><br /><br />
                     <p style="text-align: center;">Вы что-то взорвали, ура!</p>
                     <div class="center0"><button
@@ -131,8 +138,35 @@
                         </button></div>
                 </div>
                 <div id="inventory">
-                    <h1>Инвентарь</h1>
-
+                    <h3 style="text-align: center;">Инвентарь</h3>
+                    <p style="text-align: center;">Чтобы выбрать что-то, перейдите в Настройки</p><br />
+                    <div class="scrollable-div" style="margin: 8px;">
+                        <img src="kcas.webp" width="30%" /><br />
+                        <h3>KCAS 1000W - 1 шт.</h3><br />
+                        <img src="note7.jpg" width="30%" /><br />
+                        <h3>Galaxy Note 7 - 1 шт.</h3><br />
+                        <img src="huionan.jpeg" width="30%" /><br />
+                        <h3>Huananzhi - 1 шт.</h3><br />
+                        <img src="cpoko.png" width="30%" /><br />
+                        <h3>POCO X3 Pro - 1 шт.</h3><br />
+                    </div>
+                    <div class="center0"><button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
+                            ДОМОЙ
+                        </button></div>
+                </div>
+                <div id="main1">
+                    <div style="height: 70vh; display: flex;
+                    justify-content: center;
+                    align-items: center;">
+                        <p>У тебя нет друзей, очнись!</p>
+                    </div>
+                    <div class="center0"><button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
+                            ДОМОЙ
+                        </button></div>
                 </div>
                 <div class="footer">
                     <a id="ios"
@@ -140,7 +174,7 @@
                         PRO Версия для iOS ✨</a>
                     <a id="android" href="https://t.me/m1shan_ya/158">Скачать PRO Версию для Android 4.4+</a>
                     <a href="https://t.me/m1shan_ya/158">t.me/m1shan_ya</a>
-                    Lite Версия<br /><br />
+                    Lite Версия<br /><br /><br />
                 </div>
                 <script>
                     // Проверка, является ли устройство iOS
