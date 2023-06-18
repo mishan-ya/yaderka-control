@@ -70,6 +70,10 @@
             document.getElementById("inventory").style.display = "none";
             document.getElementById("main1").style.display = "none";
             document.getElementById("about").style.display = "none";
+            document.getElementById("friend").style.display = "none";
+            document.getElementById("settings").style.display = "none";
+            document.getElementById("null0").style.display = "none";
+            document.getElementById("phoneboom").style.display = "none";
             document.getElementById(layout).style.display = "block";
         }
     </script>
@@ -78,7 +82,7 @@
 <body>
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
+        <header id="loltt" class="mdl-layout__header">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
                 <span class="mdl-layout-title">Пульт от ядерки! 💣</span>
@@ -90,7 +94,8 @@
             <div class="page-content" style="margin: 8px; max-width: 450px; min-width: 300px;">
                 <div id="main">
                     <div class="center0">
-                        <img src="redbutton.png" width="60%" />
+                        <img src="redbutton.png" width="60%"
+                            onclick="showlayout('phoneboom'); document.getElementById('loltt').style.display = 'none'; toast('Вы взорвали свой телефон 😦');" />
                     </div>
                     <h3 style="text-align: center;">Пульт от ядерки!</h3>
                     <br /><br /><br />
@@ -203,7 +208,9 @@
                     <div style="height: 70vh; display: flex;
                     justify-content: center;
                     align-items: center;">
-                        <p>У тебя нет друзей, очнись!</p>
+                        <p
+                            onclick="showlayout('friend'); toast('New friend for you! ❤'); document.getElementById('loltt').style.display = 'none';">
+                            У тебя нет друзей, очнись!</p>
                     </div>
                     <div class="center0"><button
                             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
@@ -227,6 +234,59 @@
                             ДОМОЙ
                         </button></div>
                 </div>
+                <div id="settings">
+                    <style>
+                        .mdl-switch {
+                            margin-top: 8px;
+                        }
+                    </style>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                        <input type="checkbox" id="switch-1" class="mdl-switch__input">
+                        <span class="mdl-switch__label">Режим Бога</span>
+                    </label>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
+                        <input type="checkbox" id="switch-2" class="mdl-switch__input">
+                        <span class="mdl-switch__label">Switch</span>
+                    </label>
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="sample1">
+                            <label class="mdl-textfield__label" for="sample1">Точка назначения</label>
+                        </div>
+                    </form>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-3">
+                        <input type="checkbox" id="switch-3" class="mdl-switch__input">
+                        <span class="mdl-switch__label">ъуъ</span>
+                    </label>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-4">
+                        <input type="checkbox" id="switch-4" class="mdl-switch__input">
+                        <span class="mdl-switch__label">Баги</span>
+                    </label>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-4">
+                        <input type="checkbox" id="switch-4" class="mdl-switch__input">
+                        <span class="mdl-switch__label">Ещё баги</span>
+                    </label>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-6">
+                        <input type="checkbox" id="switch-6" class="mdl-switch__input">
+                        <span class="mdl-switch__label">Реклама</span>
+                    </label>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-7">
+                        <input type="checkbox" id="switch-7" class="mdl-switch__input">
+                        <span class="mdl-switch__label">Хочу какать</span>
+                    </label>
+                    <div class="center0"><button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            style="background-color: rgb(0, 255, 106); width: 120px;"
+                            onclick="showlayout('null0'); document.getElementById('loltt').style.display = 'none';">
+                            СОХРАНИТЬ
+                        </button></div>
+                    <div class="center0" style="margin-top: 8px;"><button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
+                            ДОМОЙ
+                        </button></div>
+                </div>
+
                 <script>
                     // Проверка, является ли устройство iOS
                     function isIOS() {
@@ -241,6 +301,21 @@
                     }
                 </script>
                 <div id="toastt"></div>
+            </div>
+            <div id="friend">
+                <img src="rgb_wezer.png" style="width: 100vw; height: 100vh;  margin: 0;"
+                    onclick="showlayout('settings'); document.getElementById('loltt').style.display = 'block'; toast('ВотТыБляНаху~')" />
+                <div class="center0"><button
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        style="background-color: rgb(0, 255, 106); width: 120px;"
+                        onclick="showlayout('main1'); document.getElementById('loltt').style.display = 'block';">
+                        НАЗАД
+                    </button></div>
+            </div>
+            <div id="null0" style="background-color: black; color: black; width: 100vw; height: 100vh; margin: 0;">
+            </div>
+            <div id="phoneboom">
+                <img src="explode.jpg" style="height: 100vh; width: 100vw;" onclick="location.reload();" />
             </div>
         </main>
     </div>
