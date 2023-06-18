@@ -10,7 +10,7 @@
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <style>
-        .containerimg {
+        .center0 {
             display: flex;
             justify-content: center;
         }
@@ -47,7 +47,7 @@
         <main class="mdl-layout__content">
             <div class="page-content" style="margin: 8px; max-width: 450px; min-width: 300px;">
                 <div id="main">
-                    <div class="containerimg">
+                    <div class="center0">
                         <img src="redbutton.png" width="60%" />
                     </div>
                     <h3 style="text-align: center;">Пульт от ядерки!</h3>
@@ -119,9 +119,14 @@
                     </div>
                 </div>
                 <div id="boom">
-                    <img src="boom.png" width="100%"/><br />
+                    <img src="boom.png" width="100%" /><br />
                     <h2 style="text-align: center;">Оладушки! 🤗</h2><br /><br /><br /><br />
                     <p style="text-align: center;">Вы что-то взорвали, ура!</p>
+                    <div class="center0"><button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
+                            ДОМОЙ
+                        </button></div>
                 </div>
                 <div class="footer">
                     <a id="ios"
@@ -129,7 +134,7 @@
                         PRO Версия для iOS ✨</a><br />
                     <a id="android" href="https://t.me/m1shan_ya/158">Скачать PRO Версию для Android 4.4+<br /></a>
                     <a href="https://t.me/m1shan_ya/158">t.me/m1shan_ya<br /></a>
-                    Lite Версия
+                    Lite Версия<br /><br />
                 </div>
                 <script>
                     // Проверка, является ли устройство iOS
