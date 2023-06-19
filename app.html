@@ -4,424 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta http-equiv="cache-control" content="no-store">
     <title>Пульт от ядерки! 💣</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
     <style>
         html,
         body {
             height: 100%;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
 
-        .tabletmode {
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+        }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            flex-direction: column;
         }
 
-        .center0 {
-            display: flex;
-            justify-content: center;
+        #preloader img {
+            width: 25%;
+            border-radius: 15%;
         }
 
-        .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
+        .lds-ripple {
+            display: inline-block;
+            position: relative;
+            width: 40px;
+            height: 40px;
         }
 
-        .scrollable-div {
-            height: 50vh;
-            overflow: auto;
+        .lds-ripple div {
+            position: absolute;
+            border: 4px solid #000000;
+            opacity: 1;
+            border-radius: 50%;
+            animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
         }
 
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #303030;
-            color: #fff;
-            padding: 16px;
-            border-radius: 8px;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-            z-index: 999;
-        }
-    </style>
-    <script>
-        let ver = '2.14.1';
-        function toast(text0) {
-            var toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = text0;
-
-            document.getElementById("toastt").appendChild(toast);
-
-            setTimeout(function () {
-                toast.style.opacity = '1';
-            }, 100);
-
-            setTimeout(function () {
-                toast.style.opacity = '0';
-                setTimeout(function () {
-                    document.getElementById("toastt").removeChild(toast);
-                }, 300);
-            }, 3000);
+        .lds-ripple div:nth-child(2) {
+            animation-delay: -0.5s;
         }
 
-        function showlayout(layout) {
-            document.getElementById("main").style.display = "none";
-            document.getElementById("startmain").style.display = "none";
-            document.getElementById("boom").style.display = "none";
-            document.getElementById("inventory").style.display = "none";
-            document.getElementById("main1").style.display = "none";
-            document.getElementById("about").style.display = "none";
-            document.getElementById("friend").style.display = "none";
-            document.getElementById("settings").style.display = "none";
-            document.getElementById("null0").style.display = "none";
-            document.getElementById("phoneboom").style.display = "none";
-            document.getElementById("changelog").style.display = "none";
-            document.getElementById(layout).style.display = "block";
-        }
+        @keyframes lds-ripple {
+            0% {
+                top: 18px;
+                left: 18px;
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
 
-        function malert(title, text, button) {
-            document.getElementById("mtitle").innerText = title;
-            document.getElementById("mtext").innerText = text;
-            document.getElementById("mbutton").innerText = button;
-            dialog.showModal();
-        }
+            4.9% {
+                top: 18px;
+                left: 18px;
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
 
-        function update(version, changelog) {
-            document.getElementById("ver").textContent = version;
-            if (localStorage.getItem(version) == 'yes') {
-                console.log('ok');
-            } else {
-                setTimeout(() => {
-                    malert('Обновление \nV' + version, 'Changelog:\n' + changelog, 'ХОРОШО!');
-                    localStorage.setItem(version, 'yes');
-                }, 1000);
+            5% {
+                top: 18px;
+                left: 18px;
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+
+            100% {
+                top: 0px;
+                left: 0px;
+                width: 36px;
+                height: 36px;
+                opacity: 0;
             }
         }
-
-        function hideactionbar() {
-            document.getElementById("loltt").style.display = "none";
-            document.getElementById("layouts").style.display = "none";
-        }
-
-        function unhideactionbar() {
-            document.getElementById("loltt").style.display = "flex";
-            document.getElementById("layouts").style.display = "flex";
-        }
+    </style>
+    <div id="preloader">
+        <img
+            src="data:image/jpeg;base64,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" />
+        <br />
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div><br />
+        <h5 style="margin: 0; font-family: sans-serif; font-size: 5vw;">Пульт от ядерки! 💣</h5>
+        <h6 id="podskazka" style="margin-top: 10vh; font-family: sans-serif; font-size: 3vw;">Загрузка...</h6>
+    </div>
+    <script>window.addEventListener('load', function () {
+            setTimeout(() => {
+                var preloader = document.getElementById('preloader');
+                preloader.style.display = 'none';
+            }, 1500);
+        });
+        var words = ['Чтобы зайти в настройки, нажмите "НАСТРОЙКИ"', 'Чтобы выбрать оружие, нажмите "ЗАПАСЫ ОРУЖ."', 'СРЪжн пВЧХл гнБФЮ уМрфкПВВ 13897!!', 'Зачем ты это читаешь?', 'Совет дня: если возможно установи Jailbreak'];
+        var randomIndex = Math.floor(Math.random() * words.length);
+        var randomWord = words[randomIndex];
+        document.getElementById("podskazka").innerText = randomWord;
     </script>
-</head>
 
 <body>
-    <!-- Always shows a header, even in smaller screens. -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header id="loltt" class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-                <!-- Title -->
-                <span class="mdl-layout-title">Пульт от ядерки! 💣</span>
-                <!-- Add spacer, to align navigation to the right -->
-                <div class="mdl-layout-spacer"></div>
-            </div>
-        </header>
-        <main class="mdl-layout__content">
-            <div id="layouts" class="tabletmode">
-                <div class="page-content"
-                    style="margin: 8px; max-width: 450px; min-width: 300px; width: 100%; height: 100%;">
-                    <div id="main">
-                        <div class="center0">
-                            <img src="redbutton.png" width="60%"
-                                onclick="showlayout('phoneboom'); hideactionbar(); toast('Вы взорвали свой телефон 😦');" />
-                        </div>
-                        <h3 style="text-align: center;">Пульт от ядерки!</h3>
-                        <br /><br /><br />
-                        <button
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                            onclick="showlayout('startmain')" style="width: 100%; background-color: red;">
-                            ЗАПУСТИТЬ!
-                        </button>
-                        <div style="display: flex; flex-direction: row; justify-content: center">
-                            <a
-                                href="javascript:malert('Ашыбка!!!','Функция Настройки не работае!!!!1!!!!!!!!!!!!!!','OK')">
-                                <button
-                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                    style="background-color: rgb(109, 109, 109); margin-top: 8px; margin-right: 4px; width: calc(100% - 4px);"
-                                    disabled>
-                                    НАСТРОИТЬ
-                                </button></a>
-                            <button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="margin-top: 8px; margin-right: 4px; width: calc(100% - 4px);"
-                                onclick="showlayout('main1'); toast('404');">
-                                СОЮЗНИКИ
-                            </button>
-                            <button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="margin-top: 8px; margin-right: 4px; height: auto;"
-                                onclick="showlayout('inventory')">
-                                ЗАПАСЫ ОРУЖ.
-                            </button>
-                        </div>
-                        <p style="width: 120px;">Меню настроек не активно, обратитесь в поддержку за помощью</p>
-                        <dialog class="mdl-dialog">
-                            <h3 class="mdl-dialog__title" id="mtitle">Заголовок</h3>
-                            <div class="mdl-dialog__content">
-                                <p id="mtext">
-                                    Текст
-                                </p>
-                            </div>
-                            <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
-                                <button type="button" id="mbutton" class="mdl-button close"
-                                    onclick="dialog.close();">Кнопка</button>
-                            </div>
-                        </dialog>
-                        <script>
-                            var dialog = document.querySelector('dialog');
-                            var showModalButton = document.querySelector('.show-modal');
-                            if (!dialog.showModal) {
-                                dialogPolyfill.registerDialog(dialog);
-                            }
-                            showModalButton.addEventListener('click', function () {
-                                dialog.showModal();
-                            });
-                            dialog.querySelector('.close').addEventListener('click', function () {
-                                dialog.close();
-                            });
-                        </script>
-                        <div class="footer">
-                            <a href="https://t.me/m1shan_ya/158">t.me/m1shan_ya</a>
-                            <a id="ios"
-                                href="https://appetize.io/embed/ll4kbfibszkqzsin3g6xi2r2dm?device=nexus5&osVersion=8.1&scale=100&deviceColor=black">
-                                Попробовать Android версию</a>
-                            <a href="javascript:showlayout('about');">About App</a><br /><br /><br />
-                        </div>
-                    </div>
-                    <div id="startmain">
-                        <h3>Точка отправления не задана!<br />Отправить на вашу геопозицию?</h3>
-                        <div style="display: flex;
-                    flex-direction: row;
-                    justify-content: center;">
-                            <button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
-                                ОТМЕНА
-                            </button>
-                            <button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="background-color: red; width: 100%; margin-left: 8px;"
-                                onclick="showlayout('boom'); toast('Подождите...')">
-                                ЗАПУСК!
-                            </button>
-                        </div>
-                    </div>
-                    <div id="boom">
-                        <img src="explode.jpg" width="100%" /><br />
-                        <h2 style="text-align: center;">Оладушки! 🤗</h2><br /><br /><br /><br />
-                        <p style="text-align: center;">Вы что-то взорвали, ура!</p>
-                        <div class="center0"><button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
-                                ДОМОЙ
-                            </button></div>
-                    </div>
-                    <div id="inventory">
-                        <h3 style="text-align: center;">Инвентарь</h3>
-                        <p style="text-align: center;">Чтобы выбрать что-то, перейдите в Настройки</p><br />
-                        <div class="scrollable-div" style="margin: 8px;">
-                            <img src="kcas.webp" width="30%" /><br />
-                            <h3>KCAS 1000W - 1 шт.</h3><br />
-                            <img src="note7.jpg" width="30%" /><br />
-                            <h3>Galaxy Note 7 - 1 шт.</h3><br />
-                            <img src="huionan.jpeg" width="30%" /><br />
-                            <h3>Huananzhi - 1 шт.</h3><br />
-                            <img src="cpoko.png" width="30%" /><br />
-                            <h3>POCO X3 Pro - 1 шт.</h3><br />
-                        </div>
-                        <div class="center0"><button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
-                                ДОМОЙ
-                            </button></div>
-                    </div>
-                    <div id="main1">
-                        <div style="height: 70vh; display: flex;
-                    justify-content: center;
-                    align-items: center;">
-                            <p onclick="showlayout('friend'); toast('New friend for you! ❤'); hideactionbar();">
-                                У тебя нет друзей, очнись!</p>
-                        </div>
-                        <div class="center0"><button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main');">
-                                ДОМОЙ
-                            </button></div>
-                    </div>
-                    <div id="about">
-                        <div style="margin: 8px; margin-top: 16px; height: 100%;">
-                            <img src="favicon.png" height="64px"
-                                style="border-radius: 5px; float:left; margin: 0px 8px 8px 0;" />
-                            <h4 style="margin: 0px; margin-top: 8px;">Пульт от ядерки!</h4>
-                            <p style="margin-top: 8px;">Ver.: <span id="ver">Загрузка...</span> <a
-                                    onclick="showlayout('changelog');">Changelog</a>
-                            </p>
-                            <h5>Автор:</h5>
-                            <p>t.me/m1shan_ya<br />
-                                tiktok.com/@Mishan_Ya.br0</p>
-                        </div>
-                        <div class="center0"><button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
-                                ДОМОЙ
-                            </button></div>
-                    </div>
-                    <div id="changelog">
-                        <h4>V2.14.1 (Release)</h4>
-                        <h6>Исправление окна<br />iPad интерфейс [БЕТА]</h6>
-                        <h4>V2.14 (Release)</h4>
-                        <h6>Допилил что-то</h6>
-                        <h4>V2.13</h4>
-                        <h6>Новые предметы: Хуйонан и Чпоко ыкс 3 про</h6>
-                        <h4>V2.12</h4>
-                        <h6>Пытаюсь починить ултра топ слежка мега бор маминой карточки донат фортнай секс скин купить в
-                            бравл старс донат адопт ми роблокс wine типо ПИВО!!!!!</h6>
-                        <h4>V2.11</h4>
-                        <h6>(Android Only) Минимальнаяя поддержка горизонтального режима и планшетов и бла-бла-бла,
-                            какой-то
-                            лишний бубнёж об обновлении 🤓🤓🤓</h6>
-                        <h4>V2.10</h4>
-                        <h6>Типа что-бы было круглое число в ченж логе :)</h6>
-                        <h4>V2.9 (Release)</h4>
-                        <h6>Изменён чейнжлог</h6>
-                        <h4>V2.8</h4>
-                        <h6>Он опять всё сломал...</h6>
-                        <h4>V2.6 (Release)</h4>
-                        <h6>Добавлено больше секреток лол ыыыы</h6>
-                        <h4>V2.0</h4>
-                        <h6>Добавлено: <br />• Страница About App <br />• Страница Changelog <br />Удаленно: <br />•
-                            Добавления добавлений для добавления дополнительных добвленных доповлений дополнительно</h6>
-                        <h4>V1.7</h4>
-                        <h6>Добавлено добавления добавлений для добавления дополнительных добвленных доповлений
-                            дополнительно</h6>
-                        <h4>V1.3 (Release)</h4>
-                        <h6>Создан релиз</h6>
-                        <h4>V1.0</h4>
-                        <h6>Добавлены баги, чтобы был повод заработать на покушатц... Стоп, но тут даже нет рекламы 😧
-                        </h6>
-                        <h4>V0.13</h4>
-                        <h6>Создан адекватный интерфейс</h6>
-                        <h4>V0.1</h4>
-                        <h6>Попытка добавть
-                            9342456734563874563984759378945789397845966385616576163465867675137475176345668346576134658138457891378945968174895761934561345789178345613648561834656183456134651638949568ш16384568913689456183546891346895139456891837458612345163847123461646823616868173845638468516451374561345619346576348562674856146613645681634856813784562384658279437566723465635667345768923475713764566347856836481686746381686751836845681238648563126845
-                            рекламы и удалена посколбку у меня взорвался бп от такого кол-ва не рабощего дерма </h6>
-                        <h4>V0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1
-                        </h4>
-                        <h6>Автор родил это приложение</h6>
-                        <div class="center0"><button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('about')">
-                                НАЗАД
-                            </button></div><br /><br /><br />
-                    </div>
-                    <div id="settings">
-                        <style>
-                            .mdl-switch {
-                                margin-top: 8px;
-                            }
-                        </style>
-                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
-                            <input type="checkbox" id="switch-1" class="mdl-switch__input">
-                            <span class="mdl-switch__label">Режим Бога</span>
-                        </label>
-                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
-                            <input type="checkbox" id="switch-2" class="mdl-switch__input">
-                            <span class="mdl-switch__label">Switch</span>
-                        </label>
-                        <form action="#">
-                            <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" id="sample1">
-                                <label class="mdl-textfield__label" for="sample1">Точка назначения</label>
-                            </div>
-                        </form>
-                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-3">
-                            <input type="checkbox" id="switch-3" class="mdl-switch__input">
-                            <span class="mdl-switch__label">ъуъ</span>
-                        </label>
-                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-4">
-                            <input type="checkbox" id="switch-4" class="mdl-switch__input">
-                            <span class="mdl-switch__label">Баги</span>
-                        </label>
-                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-4">
-                            <input type="checkbox" id="switch-4" class="mdl-switch__input">
-                            <span class="mdl-switch__label">Ещё баги</span>
-                        </label>
-                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-6">
-                            <input type="checkbox" id="switch-6" class="mdl-switch__input">
-                            <span class="mdl-switch__label">Реклама</span>
-                        </label>
-                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-7">
-                            <input type="checkbox" id="switch-7" class="mdl-switch__input">
-                            <span class="mdl-switch__label">Хочу какать</span>
-                        </label>
-                        <div class="center0"><button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="background-color: rgb(0, 255, 106); width: 120px;"
-                                onclick="showlayout('null0'); hideactionbar();">
-                                СОХРАНИТЬ
-                            </button></div>
-                        <div class="center0" style="margin-top: 8px;"><button
-                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
-                                ДОМОЙ
-                            </button></div>
-                    </div>
 
-                    <script>
-                        // Проверка, является ли устройство iOS
-                        function isIOS() {
-                            const userAgent = navigator.userAgent;
-                            return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-                        }
-                        if (isIOS()) {
-                            console.log("айфанодрочер DETECTED!!!@!@")
-                        } else {
-                            location.href = 'index.html';
-                        }
-                    </script>
-                    <div id="toastt"></div>
-                </div>
-            </div>
-            <div id="friend">
-                <img src="rgb_wezer.png" style="width: 100vw; height: 100vh;  margin: 0;"
-                    onclick="showlayout('settings');  unhideactionbar(); toast('ВотТыБляНаху~')" />
-                <div class="center0"><button
-                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                        style="background-color: rgb(0, 255, 106); width: 120px;"
-                        onclick="showlayout('main1');  unhideactionbar();">
-                        НАЗАД
-                    </button></div>
-            </div>
-            <div id="null0" style="background-color: black; color: black; width: 100vw; height: 100vh; margin: 0;">
-            </div>
-            <div id="phoneboom">
-                <img src="explode.jpg" style="height: 100vh; width: 100vw;" onclick="location.reload();" />
-            </div>
-        </main>
-    </div>
-    <script>// init main
-        showlayout('main');
-        window.addEventListener('load', function() {
-        update(ver, 'Исправление бага с окном\niPad интерфейс [БЕТА]');});
-    </script>
+    <iframe src="application.html"></iframe>
 </body>
 
 </html>

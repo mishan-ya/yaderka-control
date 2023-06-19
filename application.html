@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="cache-control" content="no-store">
+    <title>Пульт от ядерки! 💣</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .tabletmode {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .center0 {
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .scrollable-div {
+            height: 50vh;
+            overflow: auto;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #303030;
+            color: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 999;
+        }
+    </style>
+    <script>
+        let ver = '2.14.1';
+        function toast(text0) {
+            var toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = text0;
+
+            document.getElementById("toastt").appendChild(toast);
+
+            setTimeout(function () {
+                toast.style.opacity = '1';
+            }, 100);
+
+            setTimeout(function () {
+                toast.style.opacity = '0';
+                setTimeout(function () {
+                    document.getElementById("toastt").removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        function showlayout(layout) {
+            document.getElementById("main").style.display = "none";
+            document.getElementById("startmain").style.display = "none";
+            document.getElementById("boom").style.display = "none";
+            document.getElementById("inventory").style.display = "none";
+            document.getElementById("main1").style.display = "none";
+            document.getElementById("about").style.display = "none";
+            document.getElementById("friend").style.display = "none";
+            document.getElementById("settings").style.display = "none";
+            document.getElementById("null0").style.display = "none";
+            document.getElementById("phoneboom").style.display = "none";
+            document.getElementById("changelog").style.display = "none";
+            document.getElementById(layout).style.display = "block";
+        }
+
+        function malert(title, text, button) {
+            document.getElementById("mtitle").innerText = title;
+            document.getElementById("mtext").innerText = text;
+            document.getElementById("mbutton").innerText = button;
+            dialog.showModal();
+        }
+
+        function update(version, changelog) {
+            document.getElementById("ver").textContent = version;
+            if (localStorage.getItem(version) == 'yes') {
+                console.log('ok');
+            } else {
+                setTimeout(() => {
+                    malert('Обновление \nV' + version, 'Changelog:\n' + changelog, 'ХОРОШО!');
+                    localStorage.setItem(version, 'yes');
+                }, 1000);
+            }
+        }
+
+        function hideactionbar() {
+            document.getElementById("loltt").style.display = "none";
+            document.getElementById("layouts").style.display = "none";
+        }
+
+        function unhideactionbar() {
+            document.getElementById("loltt").style.display = "flex";
+            document.getElementById("layouts").style.display = "flex";
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header id="loltt" class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Пульт от ядерки! 💣</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+        <main class="mdl-layout__content">
+            <div id="layouts" class="tabletmode">
+                <div class="page-content"
+                    style="margin: 8px; max-width: 450px; min-width: 300px; width: 100%; height: 100%;">
+                    <div id="main">
+                        <div class="center0">
+                            <img src="redbutton.png" width="60%"
+                                onclick="showlayout('phoneboom'); hideactionbar(); toast('Вы взорвали свой телефон 😦');" />
+                        </div>
+                        <h3 style="text-align: center;">Пульт от ядерки!</h3>
+                        <br /><br /><br />
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                            onclick="showlayout('startmain')" style="width: 100%; background-color: red;">
+                            ЗАПУСТИТЬ!
+                        </button>
+                        <div style="display: flex; flex-direction: row; justify-content: center">
+                            <a
+                                href="javascript:malert('Ашыбка!!!','Функция Настройки не работае!!!!1!!!!!!!!!!!!!!','OK')">
+                                <button
+                                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                    style="background-color: rgb(109, 109, 109); margin-top: 8px; margin-right: 4px; width: calc(100% - 4px);"
+                                    disabled>
+                                    НАСТРОИТЬ
+                                </button></a>
+                            <button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="margin-top: 8px; margin-right: 4px; width: calc(100% - 4px);"
+                                onclick="showlayout('main1'); toast('404');">
+                                СОЮЗНИКИ
+                            </button>
+                            <button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="margin-top: 8px; margin-right: 4px; height: auto;"
+                                onclick="showlayout('inventory')">
+                                ЗАПАСЫ ОРУЖ.
+                            </button>
+                        </div>
+                        <p style="width: 120px;">Меню настроек не активно, обратитесь в поддержку за помощью</p>
+                        <dialog class="mdl-dialog">
+                            <h3 class="mdl-dialog__title" id="mtitle">Заголовок</h3>
+                            <div class="mdl-dialog__content">
+                                <p id="mtext">
+                                    Текст
+                                </p>
+                            </div>
+                            <div class="mdl-dialog__actions mdl-dialog__actions--full-width">
+                                <button type="button" id="mbutton" class="mdl-button close"
+                                    onclick="dialog.close();">Кнопка</button>
+                            </div>
+                        </dialog>
+                        <script>
+                            var dialog = document.querySelector('dialog');
+                            var showModalButton = document.querySelector('.show-modal');
+                            if (!dialog.showModal) {
+                                dialogPolyfill.registerDialog(dialog);
+                            }
+                            showModalButton.addEventListener('click', function () {
+                                dialog.showModal();
+                            });
+                            dialog.querySelector('.close').addEventListener('click', function () {
+                                dialog.close();
+                            });
+                        </script>
+                        <div class="footer">
+                            <a href="https://t.me/m1shan_ya/158">t.me/m1shan_ya</a>
+                            <a id="ios"
+                                href="https://appetize.io/embed/ll4kbfibszkqzsin3g6xi2r2dm?device=nexus5&osVersion=8.1&scale=100&deviceColor=black">
+                                Попробовать Android версию</a>
+                            <a href="javascript:showlayout('about');">About App</a><br /><br /><br />
+                        </div>
+                    </div>
+                    <div id="startmain">
+                        <h3>Точка отправления не задана!<br />Отправить на вашу геопозицию?</h3>
+                        <div style="display: flex;
+                    flex-direction: row;
+                    justify-content: center;">
+                            <button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
+                                ОТМЕНА
+                            </button>
+                            <button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="background-color: red; width: 100%; margin-left: 8px;"
+                                onclick="showlayout('boom'); toast('Подождите...')">
+                                ЗАПУСК!
+                            </button>
+                        </div>
+                    </div>
+                    <div id="boom">
+                        <img src="explode.jpg" width="100%" /><br />
+                        <h2 style="text-align: center;">Оладушки! 🤗</h2><br /><br /><br /><br />
+                        <p style="text-align: center;">Вы что-то взорвали, ура!</p>
+                        <div class="center0"><button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
+                                ДОМОЙ
+                            </button></div>
+                    </div>
+                    <div id="inventory">
+                        <h3 style="text-align: center;">Инвентарь</h3>
+                        <p style="text-align: center;">Чтобы выбрать что-то, перейдите в Настройки</p><br />
+                        <div class="scrollable-div" style="margin: 8px;">
+                            <img src="kcas.webp" width="30%" /><br />
+                            <h3>KCAS 1000W - 1 шт.</h3><br />
+                            <img src="note7.jpg" width="30%" /><br />
+                            <h3>Galaxy Note 7 - 1 шт.</h3><br />
+                            <img src="huionan.jpeg" width="30%" /><br />
+                            <h3>Huananzhi - 1 шт.</h3><br />
+                            <img src="cpoko.png" width="30%" /><br />
+                            <h3>POCO X3 Pro - 1 шт.</h3><br />
+                        </div>
+                        <div class="center0"><button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
+                                ДОМОЙ
+                            </button></div>
+                    </div>
+                    <div id="main1">
+                        <div style="height: 70vh; display: flex;
+                    justify-content: center;
+                    align-items: center;">
+                            <p onclick="showlayout('friend'); toast('New friend for you! ❤'); hideactionbar();">
+                                У тебя нет друзей, очнись!</p>
+                        </div>
+                        <div class="center0"><button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main');">
+                                ДОМОЙ
+                            </button></div>
+                    </div>
+                    <div id="about">
+                        <div style="margin: 8px; margin-top: 16px; height: 100%;">
+                            <img src="favicon.png" height="64px"
+                                style="border-radius: 5px; float:left; margin: 0px 8px 8px 0;" />
+                            <h4 style="margin: 0px; margin-top: 8px;">Пульт от ядерки!</h4>
+                            <p style="margin-top: 8px;">Ver.: <span id="ver">Загрузка...</span> <a
+                                    onclick="showlayout('changelog');">Changelog</a>
+                            </p>
+                            <h5>Автор:</h5>
+                            <p>t.me/m1shan_ya<br />
+                                tiktok.com/@Mishan_Ya.br0</p>
+                        </div>
+                        <div class="center0"><button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
+                                ДОМОЙ
+                            </button></div>
+                    </div>
+                    <div id="changelog">
+                        <h4>V2.14.1 (Release)</h4>
+                        <h6>Исправление окна<br />iPad интерфейс [БЕТА]</h6>
+                        <h4>V2.14 (Release)</h4>
+                        <h6>Допилил что-то</h6>
+                        <h4>V2.13</h4>
+                        <h6>Новые предметы: Хуйонан и Чпоко ыкс 3 про</h6>
+                        <h4>V2.12</h4>
+                        <h6>Пытаюсь починить ултра топ слежка мега бор маминой карточки донат фортнай секс скин купить в
+                            бравл старс донат адопт ми роблокс wine типо ПИВО!!!!!</h6>
+                        <h4>V2.11</h4>
+                        <h6>(Android Only) Минимальнаяя поддержка горизонтального режима и планшетов и бла-бла-бла,
+                            какой-то
+                            лишний бубнёж об обновлении 🤓🤓🤓</h6>
+                        <h4>V2.10</h4>
+                        <h6>Типа что-бы было круглое число в ченж логе :)</h6>
+                        <h4>V2.9 (Release)</h4>
+                        <h6>Изменён чейнжлог</h6>
+                        <h4>V2.8</h4>
+                        <h6>Он опять всё сломал...</h6>
+                        <h4>V2.6 (Release)</h4>
+                        <h6>Добавлено больше секреток лол ыыыы</h6>
+                        <h4>V2.0</h4>
+                        <h6>Добавлено: <br />• Страница About App <br />• Страница Changelog <br />Удаленно: <br />•
+                            Добавления добавлений для добавления дополнительных добвленных доповлений дополнительно</h6>
+                        <h4>V1.7</h4>
+                        <h6>Добавлено добавления добавлений для добавления дополнительных добвленных доповлений
+                            дополнительно</h6>
+                        <h4>V1.3 (Release)</h4>
+                        <h6>Создан релиз</h6>
+                        <h4>V1.0</h4>
+                        <h6>Добавлены баги, чтобы был повод заработать на покушатц... Стоп, но тут даже нет рекламы 😧
+                        </h6>
+                        <h4>V0.13</h4>
+                        <h6>Создан адекватный интерфейс</h6>
+                        <h4>V0.1</h4>
+                        <h6>Попытка добавть
+                            9342456734563874563984759378945789397845966385616576163465867675137475176345668346576134658138457891378945968174895761934561345789178345613648561834656183456134651638949568ш16384568913689456183546891346895139456891837458612345163847123461646823616868173845638468516451374561345619346576348562674856146613645681634856813784562384658279437566723465635667345768923475713764566347856836481686746381686751836845681238648563126845
+                            рекламы и удалена посколбку у меня взорвался бп от такого кол-ва не рабощего дерма </h6>
+                        <h4>V0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1
+                        </h4>
+                        <h6>Автор родил это приложение</h6>
+                        <div class="center0"><button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('about')">
+                                НАЗАД
+                            </button></div><br /><br /><br />
+                    </div>
+                    <div id="settings">
+                        <style>
+                            .mdl-switch {
+                                margin-top: 8px;
+                            }
+                        </style>
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                            <input type="checkbox" id="switch-1" class="mdl-switch__input">
+                            <span class="mdl-switch__label">Режим Бога</span>
+                        </label>
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
+                            <input type="checkbox" id="switch-2" class="mdl-switch__input">
+                            <span class="mdl-switch__label">Switch</span>
+                        </label>
+                        <form action="#">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" id="sample1">
+                                <label class="mdl-textfield__label" for="sample1">Точка назначения</label>
+                            </div>
+                        </form>
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-3">
+                            <input type="checkbox" id="switch-3" class="mdl-switch__input">
+                            <span class="mdl-switch__label">ъуъ</span>
+                        </label>
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-4">
+                            <input type="checkbox" id="switch-4" class="mdl-switch__input">
+                            <span class="mdl-switch__label">Баги</span>
+                        </label>
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-4">
+                            <input type="checkbox" id="switch-4" class="mdl-switch__input">
+                            <span class="mdl-switch__label">Ещё баги</span>
+                        </label>
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-6">
+                            <input type="checkbox" id="switch-6" class="mdl-switch__input">
+                            <span class="mdl-switch__label">Реклама</span>
+                        </label>
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-7">
+                            <input type="checkbox" id="switch-7" class="mdl-switch__input">
+                            <span class="mdl-switch__label">Хочу какать</span>
+                        </label>
+                        <div class="center0"><button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="background-color: rgb(0, 255, 106); width: 120px;"
+                                onclick="showlayout('null0'); hideactionbar();">
+                                СОХРАНИТЬ
+                            </button></div>
+                        <div class="center0" style="margin-top: 8px;"><button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                                style="background-color: rgb(0, 255, 106); width: 120px;" onclick="showlayout('main')">
+                                ДОМОЙ
+                            </button></div>
+                    </div>
+
+                    <script>
+                        // Проверка, является ли устройство iOS
+                        function isIOS() {
+                            const userAgent = navigator.userAgent;
+                            return /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+                        }
+                        if (isIOS()) {
+                            console.log("айфанодрочер DETECTED!!!@!@")
+                        } else {
+                            location.href = 'index.html';
+                        }
+                    </script>
+                    <div id="toastt"></div>
+                </div>
+            </div>
+            <div id="friend">
+                <img src="rgb_wezer.png" style="width: 100vw; height: 100vh;  margin: 0;"
+                    onclick="showlayout('settings');  unhideactionbar(); toast('ВотТыБляНаху~')" />
+                <div class="center0"><button
+                        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                        style="background-color: rgb(0, 255, 106); width: 120px;"
+                        onclick="showlayout('main1');  unhideactionbar();">
+                        НАЗАД
+                    </button></div>
+            </div>
+            <div id="null0" style="background-color: black; color: black; width: 100vw; height: 100vh; margin: 0;">
+            </div>
+            <div id="phoneboom">
+                <img src="explode.jpg" style="height: 100vh; width: 100vw;" onclick="location.reload();" />
+            </div>
+        </main>
+    </div>
+    <script>// init main
+        showlayout('main');
+        window.addEventListener('load', function() {
+        update(ver, 'Исправление бага с окном\niPad интерфейс [БЕТА]');});
+    </script>
+</body>
+
+</html>
